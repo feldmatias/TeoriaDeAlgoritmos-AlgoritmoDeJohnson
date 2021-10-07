@@ -1,3 +1,6 @@
+import math
+
+
 class Vertex:
     def __init__(self, name, id):
         self.name = name
@@ -22,5 +25,11 @@ class Vertex:
         return self.id < other.id
 
     def min_path_distance_to(self, other_vertex):
+        if other_vertex == self:
+            return 0
+
         path = self.min_paths[other_vertex.id]
+        if not path:
+            return math.inf
+
         return sum([edge.weight for edge in path])

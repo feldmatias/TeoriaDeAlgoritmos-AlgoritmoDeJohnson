@@ -44,4 +44,4 @@ def print_distances(vertices, distances):
             min_vertex = vertices[i]
 
     print()
-    print(f"The point with minimum distance to everywhere else is '{min_vertex}'")
+    print(f"The point with minimum distance to everywhere else is '{min_vertex}' with total cost {min_distance}")
