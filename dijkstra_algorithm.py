@@ -33,14 +33,18 @@ def dijkstra_algorithm(vertices, starting_vertex):
 
     # Build min paths
     for vertex in vertices:
-        path = []
-        current_vertex = vertex
-
-        # Rebuild the path going backwards
-        while current_vertex:
-            if current_vertex.dijkstra_edge_parent:
-                path.insert(0, current_vertex.dijkstra_edge_parent)
-                current_vertex = current_vertex.dijkstra_edge_parent.vertex_from
-            else:
-                current_vertex = None
+        path = _rebuild_path(vertex)
         starting_vertex.min_paths[vertex.id] = path
+
+
+def _rebuild_path(vertex):
+    if vertex.dijkstra_path:
+        # Already calculated
+        return vertex.dijkstra_path
+
+    if not vertex.dijkstra_edge_parent:
+        # First vertex in path
+        return []
+
+    parent = vertex.dijkstra_edge_parent.vertex_from
+    return _rebuild_path(parent) + [vertex.dijkstra_edge_parent]

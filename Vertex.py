@@ -12,6 +12,7 @@ class Vertex:
         self.bellman_ford_min_path = 0
         self.dijkstra_distance = 0
         self.dijkstra_edge_parent = 0
+        self.dijkstra_path = 0
 
         self.min_paths = {}
 
